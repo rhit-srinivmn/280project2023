@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+  <link rel="stylesheet" href="styles/bootstrap-material-design.min.css">
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+  <link rel="stylesheet" href="styles/main.css">
+  <title>Equation Tracker</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">Equation Tracker Login</a>
+    <button id="signOutButton" type="button" class="btn text-light">Sign Out</button>
+  </nav>
+  <div id = "intro">
+    <h2>Welcome to the Equation Tracker</h2>
+    <h3>Sign In or Create an Account To Start!</h3>
+  </div>
+  <div id="loginPage" class="container page-container">
+      <div class="form-group">
+        <label for="inputEmail" class="bmd-label-floating">Email address</label>
+        <input type="email" class="form-control" id="inputEmail">
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="bmd-label-floating">Password</label>
+        <input type="password" class="form-control" id="inputPassword">
+      </div>  
+      <button id = "createAccountButton" type="button" class="btn">Create Account</button>
+      <button id = "logInButton" type="button" class="btn">Log Into Existing Account</button>
+      <hr>
+      <div id = "displayHolder"></div>
+      <img class = "indImg" id="samPicOne" src="images/1F0A4903.jpg" alt="Samarpan Pic 1">
+      <img class = "indImg" id="samPicOne" src="images/1F0A5206.jpg" alt="Samarpan Pic 1">
+      <img class = "indImg" id="samPicOne" src="images/EV6A6584.jpg" alt="Samarpan Pic 1">
+    </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/popper.js"></script>
+  <script src="scripts/bootstrap-material-design.js"></script>
+  <script>$("body").bootstrapMaterialDesign();</script>
+  <script src="/__/firebase/7.18.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.18.0/firebase-analytics.js"></script>
+  <script src="/__/firebase/7.18.0/firebase-firestore.js"></script>
+  <script src="/__/firebase/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+
+</html>

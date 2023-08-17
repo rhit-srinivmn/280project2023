@@ -1,0 +1,98 @@
+body {
+    background: rgb(213, 116, 60);
+}
+
+.navbar {
+    background-color: #000;
+    color: white;
+}
+
+.page-container {
+    margin-top: 75px;
+}
+
+#fab {
+    background: #800000;
+    bottom: 10px;
+    color: white;
+    position: fixed;
+    right: 10px;
+}
+
+#fab:active {
+    opacity: 0.8;
+    transform: translateY(2px);
+}
+
+.card {
+    margin: 10px 0;
+}
+
+#listPage .card-title,
+#listPage .card-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+.dropdown-menu-right {
+    left: -128px;
+}
+.bmd-layout-content{
+    width: 40vw;
+    height: 100vh;
+}
+
+.bmd-layout-drawer>header{
+    background-color: #000;
+    color: white;
+}
+.bmd-layout-drawer>ul{
+    background-color: rgb(213, 116, 60);
+}
+.list-group-item :first-child{
+    margin-right: 0.75rem;
+}
+
+#menuEdit,
+#menuDelete,
+#inputComment,
+#inputGrade,
+#gradeHide,
+#cardGrade{
+    display:none;
+}
+.btn{
+    background: #800000;
+    bottom: 10px;
+    color: white;
+}
+.indImg{
+    max-width: 350px;
+    margin: 20px auto;
+    display: inline-block;
+}
+
+#intro{
+    padding-top: 60px;
+    text-align: center;
+    font-weight: 900;
+}
+#addNewFile{
+    background: #800000;
+    bottom: 10px;
+    color: white;
+    left: 10px;
+    
+}
+[data-background-color='good'] {
+    background-color: green;
+  }
+  
+
+  #nameHead,
+  #detailDisplayHolder{
+    text-align: right;
+    font-size: 10px;
+  }
