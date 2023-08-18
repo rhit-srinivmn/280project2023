@@ -269,6 +269,7 @@ rhit.DetailPageController = class {
 				document.body.style.backgroundColor = "red";
 			}
 		}
+		// Comment
 		if(rhit.fbAuthManager.uid == masterAuth){
 			document.querySelector("#inputComment").style.display = "flex";
 			document.querySelector("#inputGrade").style.display = "flex";
