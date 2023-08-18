@@ -49,7 +49,7 @@ rhit.ListPageController = class {
 			const subject = document.querySelector("#inputSubject").value;
 			const equation = document.querySelector("#inputLog").value;
 			const name = document.querySelector("#inputName").value;
-			const eqnName = document.querySelector("#inputeqnName").value;
+			const eqnName = document.querySelector("#inputDate").value;
 			const comment = document.querySelector("#inputComment").value;
 			const grade = document.querySelector("#inputGrade").value;
 			rhit.fbEquationListManager.add(subject, equation, name, eqnName, comment, grade);
@@ -60,7 +60,7 @@ rhit.ListPageController = class {
 			document.querySelector("#inputSubject").value = "";
 			document.querySelector("#inputLog").value = "";
 			document.querySelector("#inputName").value = "";
-			document.querySelector("#inputeqnName").value ="";
+			document.querySelector("#inputDate").value ="";
 			document.querySelector("#inputComment").value = "";
 			document.querySelector("#inputGrade").value="";
 		});
@@ -151,7 +151,7 @@ rhit.FbEquationListManager = class {
 		this._unsubscribe = null;
 	}
 
-	add(subject, post, name, eqnName, comment, grade) {
+	add(subject, equation, name, eqnName, comment, grade) {
 		// Add a new document with a generated id.
 		this._ref.add({
 			[rhit.FB_KEY_SUBJECT]: subject,
@@ -218,20 +218,20 @@ rhit.DetailPageController = class {
 
 		document.querySelector("#submitEditPost").addEventListener("click", (event) => {
 			const subject = document.querySelector("#inputSubject").value;
-			const post = document.querySelector("#inputPost").value;
+			const equation = document.querySelector("#inputPost").value;
 			const name = document.querySelector("#inputName").value;
-			const eqnName = document.querySelector("#inputeqnName").value;
+			const eqnName = document.querySelector("#inputDate").value;
 			const comment = document.querySelector("#inputComment").value;
 			const grade = document.querySelector("#inputGrade").value;
-			rhit.fbSingleEquationManager.update(subject, post, name, eqnName, comment, grade);
+			rhit.fbSingleEquationManager.update(subject, equation, name, eqnName, comment, grade);
 		});
 
 		$("#editPostDialog").on("show.bs.modal", (event) => {
 			// Pre animation
 			document.querySelector("#inputSubject").value = rhit.fbSingleEquationManager.subject;
-			document.querySelector("#inputPost").value = rhit.fbSingleEquationManager.post;
+			document.querySelector("#inputPost").value = rhit.fbSingleEquationManager.equation;
 			document.querySelector("#inputName").value = rhit.fbSingleEquationManager.name;
-			document.querySelector("#inputeqnName").value = rhit.fbSingleEquationManager.eqnName;
+			document.querySelector("#inputDate").value = rhit.fbSingleEquationManager.eqnName;
 			document.querySelector("#inputComment").value = rhit.fbSingleEquationManager.comment;
 			document.querySelector("#inputGrade").value = rhit.fbSingleEquationManager.grade;
 		});
@@ -251,7 +251,7 @@ rhit.DetailPageController = class {
 	}
 	updateView() {
 		document.querySelector("#cardSubject").innerHTML = rhit.fbSingleEquationManager.subject;
-		document.querySelector("#cardPost").innerHTML = rhit.fbSingleEquationManager.post;
+		document.querySelector("#cardPost").innerHTML = rhit.fbSingleEquationManager.eqution;
 		document.querySelector("#cardName").innerHTML = rhit.fbSingleEquationManager.name;
 		document.querySelector("#cardeqnName").innerHTML = rhit.fbSingleEquationManager.eqnName;
 		document.querySelector("#cardComment").innerHTML = rhit.fbSingleEquationManager.comment;
@@ -301,10 +301,10 @@ rhit.FbSingleEquationManager = class {
 		this._unsubscribe();
 	}
 
-	update(subject, post, name, eqnName, comment, grade) {
+	update(subject, equation, name, eqnName, comment, grade) {
 		this._ref.update({
 				[rhit.FB_KEY_SUBJECT]: subject,
-				[rhit.FB_KEY_EQUATION]: post,
+				[rhit.FB_KEY_EQUATION]: equation,
 				[rhit.FB_KEY_NAME]: name,
 				[rhit.FB_KEY_EQNNAME]: eqnName,
 				[rhit.FB_KEY_COMMENT]: comment,
