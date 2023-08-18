@@ -6,7 +6,8 @@ rhit.FB_KEY_EQUATION = "equation";
 rhit.FB_KEY_LAST_TOUCHED = "lastTouched";
 rhit.FB_KEY_USER = "user";
 rhit.FB_KEY_NAME = "name";
-rhit.FB_KEY_DATE = "date";
+// rhit.FB_KEY_DATE = "date";
+rhit.FB_KEY_EQNNAME = "eqnName";
 rhit.FB_KEY_COMMENT = "comment";
 rhit.FB_KEY_GRADE = "grade";
 rhit.fbEquationListManager = null;
@@ -48,7 +49,7 @@ rhit.ListPageController = class {
 			const subject = document.querySelector("#inputSubject").value;
 			const equation = document.querySelector("#inputLog").value;
 			const name = document.querySelector("#inputName").value;
-			const eqnName = document.querySelector("#inputDate").value;
+			const eqnName = document.querySelector("#inputeqnName").value;
 			const comment = document.querySelector("#inputComment").value;
 			const grade = document.querySelector("#inputGrade").value;
 			rhit.fbEquationListManager.add(subject, equation, name, eqnName, comment, grade);
@@ -59,7 +60,7 @@ rhit.ListPageController = class {
 			document.querySelector("#inputSubject").value = "";
 			document.querySelector("#inputLog").value = "";
 			document.querySelector("#inputName").value = "";
-			document.querySelector("#inputDate").value ="";
+			document.querySelector("#inputeqnName").value ="";
 			document.querySelector("#inputComment").value = "";
 			document.querySelector("#inputGrade").value="";
 		});
@@ -67,14 +68,15 @@ rhit.ListPageController = class {
 			// Post animation
 			document.querySelector("#inputSubject").focus();
 		});
-		document.querySelector("#submitAddFile").addEventListener("click", (event) => {
-			event.preventDefault();
-			var timestamp = Number(new Date());
-			var storageRef = firebase.storage().ref(timestamp.toString());
-			var $ = jQuery;
-			var file_data = $("#uploadMp4").prop("files")[0];
-			storageRef.put(file_data);
-		});
+
+		// document.querySelector("#submitAddFile").addEventListener("click", (event) => {
+		// 	event.preventDefault();
+		// 	var timestamp = Number(new eqnName());
+		// 	var storageRef = firebase.storage().ref(timestamp.toString());
+		// 	var $ = jQuery;
+		// 	var file_data = $("#uploadMp4").prop("files")[0];
+		// 	storageRef.put(file_data);
+		// });
 
 		$("#addFileDialog").on("show.bs.modal", (event) => {
 			// Pre animation
@@ -116,7 +118,7 @@ rhit.ListPageController = class {
 			<div class="card" style="border-radius: 10%">
 				<div class="card-body" style="border-radius: 10%">
 					<h6 class="card-subtitle mb-2 text-muted">Name: ${log.name}</h6>
-					<h6 class="card-subtitle mb-2 text-muted">Date: ${log.date}</h6>
+					<h6 class="card-subtitle mb-2 text-muted">eqnName: ${log.eqnName}</h6>
 					<h4 class="card-title">Subject: ${log.subject}</h4>
 					<h5 class="card-subtitle mb-2">${log.equation}</h5>
 					<h6 class="card-subtitle mb-2">Comment: ${log.comment}</h6>
@@ -149,13 +151,13 @@ rhit.FbEquationListManager = class {
 		this._unsubscribe = null;
 	}
 
-	add(subject, post, name, date, comment, grade) {
+	add(subject, post, name, eqnName, comment, grade) {
 		// Add a new document with a generated id.
 		this._ref.add({
 			[rhit.FB_KEY_SUBJECT]: subject,
 			[rhit.FB_KEY_EQUATION]: equation,
 			[rhit.FB_KEY_USER]: rhit.fbAuthManager.uid,
-			[rhit.FB_KEY_DATE]: date,
+			[rhit.FB_KEY_EQNNAME]: eqnName,
 			[rhit.FB_KEY_NAME]: name,
 			[rhit.FB_KEY_COMMENT]: comment,
 			[rhit.FB_KEY_GRADE]: grade,
@@ -176,7 +178,7 @@ rhit.FbEquationListManager = class {
 			query=query.where(rhit.FB_KEY_USER, "==", this._uid)
 		}
 		this._unsubscribe = query.onSnapshot((querySnapshot) => {
-				console.log("Log Update");
+				console.log("Log update");
 				this._documentSnapshots = querySnapshot.docs;
 				// querySnapshot.forEach((doc) => {
 				// 	console.log(doc.data());
@@ -201,7 +203,7 @@ rhit.FbEquationListManager = class {
 			docSnapshot.get(rhit.FB_KEY_SUBJECT),
 			docSnapshot.get(rhit.FB_KEY_EQUATION),
 			docSnapshot.get(rhit.FB_KEY_NAME),
-			docSnapshot.get(rhit.FB_KEY_DATE),
+			docSnapshot.get(rhit.FB_KEY_EQNNAME),
 			docSnapshot.get(rhit.FB_KEY_COMMENT),
 			docSnapshot.get(rhit.FB_KEY_GRADE));
 		return lg;
@@ -218,10 +220,10 @@ rhit.DetailPageController = class {
 			const subject = document.querySelector("#inputSubject").value;
 			const post = document.querySelector("#inputPost").value;
 			const name = document.querySelector("#inputName").value;
-			const date = document.querySelector("#inputDate").value;
+			const eqnName = document.querySelector("#inputeqnName").value;
 			const comment = document.querySelector("#inputComment").value;
 			const grade = document.querySelector("#inputGrade").value;
-			rhit.fbSingleEquationManager.update(subject, post, name, date, comment, grade);
+			rhit.fbSingleEquationManager.update(subject, post, name, eqnName, comment, grade);
 		});
 
 		$("#editPostDialog").on("show.bs.modal", (event) => {
@@ -229,7 +231,7 @@ rhit.DetailPageController = class {
 			document.querySelector("#inputSubject").value = rhit.fbSingleEquationManager.subject;
 			document.querySelector("#inputPost").value = rhit.fbSingleEquationManager.post;
 			document.querySelector("#inputName").value = rhit.fbSingleEquationManager.name;
-			document.querySelector("#inputDate").value = rhit.fbSingleEquationManager.date;
+			document.querySelector("#inputeqnName").value = rhit.fbSingleEquationManager.eqnName;
 			document.querySelector("#inputComment").value = rhit.fbSingleEquationManager.comment;
 			document.querySelector("#inputGrade").value = rhit.fbSingleEquationManager.grade;
 		});
@@ -251,7 +253,7 @@ rhit.DetailPageController = class {
 		document.querySelector("#cardSubject").innerHTML = rhit.fbSingleEquationManager.subject;
 		document.querySelector("#cardPost").innerHTML = rhit.fbSingleEquationManager.post;
 		document.querySelector("#cardName").innerHTML = rhit.fbSingleEquationManager.name;
-		document.querySelector("#cardDate").innerHTML = rhit.fbSingleEquationManager.date;
+		document.querySelector("#cardeqnName").innerHTML = rhit.fbSingleEquationManager.eqnName;
 		document.querySelector("#cardComment").innerHTML = rhit.fbSingleEquationManager.comment;
 		document.querySelector("#cardGrade").innerHTML = rhit.fbSingleEquationManager.grade;
 
@@ -299,12 +301,12 @@ rhit.FbSingleEquationManager = class {
 		this._unsubscribe();
 	}
 
-	update(subject, post, name, date, comment, grade) {
+	update(subject, post, name, eqnName, comment, grade) {
 		this._ref.update({
 				[rhit.FB_KEY_SUBJECT]: subject,
 				[rhit.FB_KEY_EQUATION]: post,
 				[rhit.FB_KEY_NAME]: name,
-				[rhit.FB_KEY_DATE]: date,
+				[rhit.FB_KEY_EQNNAME]: eqnName,
 				[rhit.FB_KEY_COMMENT]: comment,
 				[rhit.FB_KEY_GRADE]: grade,
 				[rhit.FB_KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now(),
@@ -334,8 +336,8 @@ rhit.FbSingleEquationManager = class {
 	get name(){
 		return this._documentSnapshot.get(rhit.FB_KEY_NAME);
 	}
-	get date(){
-		return this._documentSnapshot.get(rhit.FB_KEY_DATE);
+	get eqnName(){
+		return this._documentSnapshot.get(rhit.FB_KEY_EQNNAME);
 	}
 	get comment(){
 		return this._documentSnapshot.get(rhit.FB_KEY_COMMENT);
