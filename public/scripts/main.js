@@ -2,7 +2,7 @@ var rhit = rhit || {};
 
 rhit.FB_COLLECTION_EQUATIONLOG = "EquationLog";
 rhit.FB_KEY_SUBJECT = "subject";
-rhit.FB_KEY_POST = "post";
+rhit.FB_KEY_EQUATION = "equation";
 rhit.FB_KEY_LAST_TOUCHED = "lastTouched";
 rhit.FB_KEY_USER = "user";
 rhit.FB_KEY_NAME = "name";
@@ -153,7 +153,7 @@ rhit.FbEquationListManager = class {
 		// Add a new document with a generated id.
 		this._ref.add({
 			[rhit.FB_KEY_SUBJECT]: subject,
-			[rhit.FB_KEY_POST]: equation,
+			[rhit.FB_KEY_EQUATION]: equation,
 			[rhit.FB_KEY_USER]: rhit.fbAuthManager.uid,
 			[rhit.FB_KEY_DATE]: date,
 			[rhit.FB_KEY_NAME]: name,
@@ -199,7 +199,7 @@ rhit.FbEquationListManager = class {
 		const docSnapshot = this._documentSnapshots[index];
 		const lg = new rhit.Equation(docSnapshot.id,
 			docSnapshot.get(rhit.FB_KEY_SUBJECT),
-			docSnapshot.get(rhit.FB_KEY_POST),
+			docSnapshot.get(rhit.FB_KEY_EQUATION),
 			docSnapshot.get(rhit.FB_KEY_NAME),
 			docSnapshot.get(rhit.FB_KEY_DATE),
 			docSnapshot.get(rhit.FB_KEY_COMMENT),
@@ -302,7 +302,7 @@ rhit.FbSingleEquationManager = class {
 	update(subject, post, name, date, comment, grade) {
 		this._ref.update({
 				[rhit.FB_KEY_SUBJECT]: subject,
-				[rhit.FB_KEY_POST]: post,
+				[rhit.FB_KEY_EQUATION]: post,
 				[rhit.FB_KEY_NAME]: name,
 				[rhit.FB_KEY_DATE]: date,
 				[rhit.FB_KEY_COMMENT]: comment,
@@ -326,7 +326,7 @@ rhit.FbSingleEquationManager = class {
 	}
 
 	get post() {
-		return this._documentSnapshot.get(rhit.FB_KEY_POST);
+		return this._documentSnapshot.get(rhit.FB_KEY_EQUATION);
 	}
 	get user(){
 		return this._documentSnapshot.get(rhit.FB_KEY_USER);
