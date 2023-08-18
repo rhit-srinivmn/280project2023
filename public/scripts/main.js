@@ -1,6 +1,6 @@
 var rhit = rhit || {};
 
-rhit.FB_COLLECTION_STUDENTLOG = "StudentLog";
+rhit.FB_COLLECTION_EQUATIONLOG = "EquationLog";
 rhit.FB_KEY_SUBJECT = "subject";
 rhit.FB_KEY_POST = "post";
 rhit.FB_KEY_LAST_TOUCHED = "lastTouched";
@@ -145,7 +145,7 @@ rhit.FbEquationListManager = class {
 	constructor(uid) {
 		this._uid = uid;
 		this._documentSnapshots = [];
-		this._ref = firebase.firestore().collection(rhit.FB_COLLECTION_STUDENTLOG);
+		this._ref = firebase.firestore().collection(rhit.FB_COLLECTION_EQUATIONLOG);
 		this._unsubscribe = null;
 	}
 
@@ -278,7 +278,7 @@ rhit.FbSingleEquationManager = class {
 	constructor(postId) {
 		this._documentSnapshot = {};
 		this._unsubscribe = null;
-		this._ref = firebase.firestore().collection(rhit.FB_COLLECTION_STUDENTLOG).doc(postId);
+		this._ref = firebase.firestore().collection(rhit.FB_COLLECTION_EQUATIONLOG).doc(postId);
 	}
 
 	beginListening(changeListener) {
